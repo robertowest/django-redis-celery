@@ -104,3 +104,23 @@ tareas/views.py     # vistas que disparan las tareas y consultan resultados/cach
 
 - El envío de email (`enviar_email`) usa por defecto el backend de consola (`EMAIL_BACKEND`), así que en desarrollo el correo se imprime en la terminal del worker en vez de enviarse de verdad.
 - Los endpoints de ejemplo son `GET` y públicos (sin autenticación) — válido para practicar, pero no para producción.
+
+## CI/CD Integración y Distribución Continua
+
+CI/CD son un conjunto de prácticas en el desarrollo de software que automatizan las fases de compilación, prueba e implementación para permitir lanzamientos de código frecuentes, rápidos y fiables. 
+
+El proceso se basa en un pipeline de CI/CD compuesto por dos pilares fundamentales:
+
+**Integración Continua (CI)**: Los desarrolladores fusionan cambios de código en un repositorio central con frecuencia, donde se ejecutan pruebas automatizadas inmediatas para detectar errores tempranamente y asegurar que el nuevo código no rompa la funcionalidad existente. 
+
+**Entrega/Despliegue Continuo (CD)**: Automatiza la distribución del código validado; la entrega continua prepara el software para lanzarse bajo demanda (requiriendo aprobación manual), mientras que el despliegue continuo libera los cambios a los usuarios finales automáticamente sin intervención humana.
+
+```
+redis-celery/
+├─ .github
+│  └─ workflows/
+│     └─ ci.yml    # script que se ejecuta cada vez que realizamos un push
+├─ pytest.ini      # configuración para python test
+└─ tareas/
+   └─ tests.py     # pruebas que serán lanzadas para comprobar el funcionamiento de la aplicación
+```
